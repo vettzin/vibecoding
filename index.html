@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <nav class="tabs" role="tablist">
+      <button id="tab-register" class="tab active" aria-controls="panel-register" role="tab">Cadastro de Veículos</button>
+      <button id="tab-control" class="tab" aria-controls="panel-control" role="tab">Controle de Veículos</button>
+    </nav>
+
+    <main class="panels">
+      <section id="panel-register" class="panel" role="tabpanel" aria-labelledby="tab-register">
+        <form id="form-register" autocomplete="off" novalidate>
+          <div class="field">
+            <label for="driverName">Nome do condutor</label>
+            <input id="driverName" name="driverName" type="text" inputmode="text" placeholder="Ex: João Silva" required />
+          </div>
+
+          <div class="field">
+            <label for="plate">Placa</label>
+            <input id="plate" name="plate" type="text" inputmode="text" placeholder="Ex: ABC-1234" maxlength="12" required />
+            <small class="hint">Mínimo 7 caracteres</small>
+          </div>
+
+          <div class="field">
+            <label for="model">Modelo</label>
+            <input id="model" name="model" type="text" inputmode="text" placeholder="Ex: Toyota Corolla" required />
+          </div>
+
+          <div class="actions">
+            <button id="btnRegister" type="submit" class="btn primary">Cadastrar</button>
+            <button id="btnClear" type="reset" class="btn ghost">Limpar</button>
+          </div>
+        </form>
+
+        <div id="message-area" aria-live="polite"></div>
+      </section>
+
+      <section id="panel-control" class="panel hidden" role="tabpanel" aria-labelledby="tab-control">
+        <div class="controls-row">
+          <div class="search-wrap">
+            <input id="searchPlate" type="search" placeholder="Buscar por placa..." inputmode="text" />
+            <button id="clearSearch" class="icon-btn" title="Limpar busca">×</button>
+          </div>
+
+          <div class="filters" role="toolbar" aria-label="Filtros de veículos">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="parked">Estacionado</button>
+            <button class="filter-btn" data-filter="absent">Ausente</button>
+          </div>
+
+          <div class="counter">
+            Estacionados: <span id="countParked">0</span>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table id="vehiclesTable">
+            <thead>
+              <tr>
+                <th>Condutor</th>
+                <th>Placa</th>
+                <th>Modelo</th>
+                <th>Status</th>
+                <th class="actions-col">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="vehiclesBody">
+              <!-- rows inserted dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="control-message-area" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
